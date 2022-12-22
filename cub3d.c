@@ -17,6 +17,7 @@ int main(int argc, char **argv) {
     if (fd == 0)
         exit_with_error("Error\nFail to open file!\n");
     init_game(&game, fd);
+    // draw(&game);
     game.mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGHT, "test");
     mlx_loop_hook(game.mlx_ptr, &make_view, &game);
 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);

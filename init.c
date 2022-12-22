@@ -95,5 +95,4 @@ void init_game(t_game *game, int fd)
     init_vec(tmp, game->vec);
     set_map(game, tmp);
     /* tmp free code */
-
 }

@@ -30,6 +30,7 @@ void init_game(t_game *game, int fd);
 
 /* make_view.c */
 int    make_view(t_game *game);
+void    draw_ceil_floor(t_game *game);
 
 /* move.c */
 void move_camera(t_vec *vec, int sign);
