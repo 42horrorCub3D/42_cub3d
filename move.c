@@ -36,6 +36,7 @@ void move_player_sw(t_game *game, int sign)
 
 int	key_press(int keycode, t_game *game)
 {
+	printf("key press2");
     if (keycode == KEY_ESC)
 		exit_with_error("FINISHED\n");
 	else if (keycode == KEY_A)

@@ -1,7 +1,7 @@
 NAME = cub3D
 
 CC = cc
-CFLAGS = -Wall -Wextra -Wall
+CFLAGS = -Wall -Wextra -Wall -g3
 
 LIB_DIR = ./libft
 LIB = ./libft/libft.a

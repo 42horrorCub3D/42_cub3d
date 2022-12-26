@@ -7,11 +7,12 @@ int    make_view(t_game *game) {
     x = -1;
     /* ceiling, floor draw */
     draw_ceil_floor(game);
+
     while (++x < WIDTH)
     {
         init_ray(&ray, x, game->vec);
         init_side(&ray, game->vec);
-        dda(&ray, game);
+        dda(&ray, game, x);
     }
     return (0);
 }

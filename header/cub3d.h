@@ -44,7 +44,7 @@ int     open_map(const char *file);
 void    get_map(t_tmp *tmp, t_game *game, int fd);
 
 /* ray_casting.c */
-void dda(t_ray *ray, t_game *game);
+void dda(t_ray *ray, t_game *game, int x);
 double get_wall_size(t_ray *ray, t_vec *vec);
 
 /* set.c */
