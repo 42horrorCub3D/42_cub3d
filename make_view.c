@@ -1,4 +1,5 @@
 #include "./header/cub3d.h"
+#include <stdio.h>
 
 int    make_view(t_game *game) {
     int x;
@@ -8,10 +9,16 @@ int    make_view(t_game *game) {
     /* ceiling, floor draw */
     draw_ceil_floor(game);
 
+    printf("%f %f\n", game->vec->p_x, game->vec->p_y);
     while (++x < WIDTH)
     {
         init_ray(&ray, x, game->vec);
+        printf("%f %f %f\n", ray.cam, ray.ray_x, ray.ray_y);
         init_side(&ray, game->vec);
+        if (ray.map_x < 0)
+        {
+            printf("%d\n", 31231);
+        }
         dda(&ray, game, x);
     }
     return (0);
