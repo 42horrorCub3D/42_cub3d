@@ -20,10 +20,10 @@ int main(int argc, char **argv) {
     // draw(&game);
 
     game.mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGHT, "test");
-    //make_view(&game);
+    make_view(&game);
 //     printf("key press2");
     
-    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
+//    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
 
 //     printf("key press1");
 // 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);

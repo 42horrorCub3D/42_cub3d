@@ -35,7 +35,9 @@ void get_max_col(t_tmp *tmp)
 void get_map(t_tmp *tmp, t_game *game, int fd) {
     char	*tmp_line;
 	int		count;
+    int row;
 
+    row = 0;
     count = 0;
 	tmp_line = get_next_line(fd);
 	while (tmp_line != NULL)
@@ -47,12 +49,14 @@ void get_map(t_tmp *tmp, t_game *game, int fd) {
         else if (count == 5 || count == 6)
             set_floor_ceiling(game, tmp_line);
         else if (count > 7)
+        {
             ft_lstadd_back(tmp, tmp_line, ft_strlen(tmp_line));    
+            tmp->row = row++;
+        }       
         free(tmp_line);
         tmp_line = get_next_line(fd);
         count++;
-	}
-    tmp->row = count;
+	}    
 	free(tmp_line);
 	close(fd);
     get_max_col(tmp);

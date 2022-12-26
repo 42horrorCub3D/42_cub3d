@@ -17,7 +17,7 @@ void dda(t_ray *ray, t_game *game, int x)
             ray->map_y += ray->step_y;
             ray->side = 1;
         }
-        if (game->map[ray->map_y * game->col + ray->map_x] == '1')
+        if (game->map[ray->map_x * game->row + ray->map_y] == '1')
             ray->hit = 1;
     }
 
@@ -35,15 +35,30 @@ void dda(t_ray *ray, t_game *game, int x)
       int lineHeight = (int)(HEIGHT / ray->wall_d);
       //printf("%d %f %d \n", lineHeight, ray->wall_d, HEIGHT);
       int drawStart = -lineHeight / 2 + HEIGHT / 2;
-      if(drawStart < 0) drawStart = 0;
+      if(drawStart < 0)
+      {
+        drawStart = 0;
+      }
       int drawEnd = lineHeight / 2 + HEIGHT / 2;
-      if(drawEnd >= HEIGHT) drawEnd = HEIGHT - 1;
+
+      if(drawEnd >= HEIGHT)
+      {
+        drawEnd = HEIGHT - 1;
+      }
+    
+
+      //int lineHeight = HEIGHT - ray->wall_d;
+
 
       int color = 0xFFFFFF;
 
+      //printf("%d %d\n", drawStart, drawEnd);
       //verLine(x, drawStart, drawEnd, color);
       for (int y = drawStart; y < drawEnd; y++)
+      {
         mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, color);
+        printf("%d\t %d\n", x , y);
+      }
 }
 
 // double get_wall_size(t_ray *ray, t_vec *vec)

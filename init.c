@@ -54,8 +54,8 @@ void init_vec(t_tmp *tmp, t_vec *vec)
         {
             dir = node->line[index];
             if (dir == 'N' || dir == 'W' || dir == 'E' || dir == 'S') {
-                vec->p_x = count;
-                vec->p_y = index;
+                vec->p_x = count + 0.5;
+                vec->p_y = index + 0.5;
                 set_vec(vec, dir);
             }
             index++;
