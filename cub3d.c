@@ -23,12 +23,12 @@ int main(int argc, char **argv) {
     make_view(&game);
 //     printf("key press2");
     
-//    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
+    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
 
 //     printf("key press1");
-// 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
+ 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
 //     printf("key press3");
-// 	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);
+ 	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);
     
     mlx_loop(game.mlx_ptr);
     

@@ -19,6 +19,7 @@ void move_player_ad(t_game *game, int sign)
 		game->vec->p_x = goal_x;
 	if (game->map[(int)goal_y * game->col + (int)game->vec->p_x] == '0')
 		game->vec->p_y = goal_y;
+	make_view(game);
 }
 
 void move_player_sw(t_game *game, int sign)
@@ -32,11 +33,11 @@ void move_player_sw(t_game *game, int sign)
 		game->vec->p_x = goal_x;
 	if (game->map[(int)goal_y * game->col + (int)game->vec->p_x] == '0')
 		game->vec->p_y = goal_y;
+	make_view(game);
 }
 
 int	key_press(int keycode, t_game *game)
 {
-	printf("key press2");
     if (keycode == KEY_ESC)
 		exit_with_error("FINISHED\n");
 	else if (keycode == KEY_A)

@@ -17,7 +17,7 @@
 # define KEY_L                  (123)
 # define WIDTH                  (680)
 # define HEIGHT                 (480)
-# define WALK_SPEED             (1)
+# define WALK_SPEED             (0.1)
 # define DEGREE                 (1)
 
 typedef struct s_node
