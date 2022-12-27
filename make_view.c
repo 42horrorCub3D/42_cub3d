@@ -9,10 +9,6 @@ int    make_view(t_game *game) {
     /* ceiling, floor draw */
     draw_ceil_floor(game);
 
-<<<<<<< HEAD
-=======
-    //printf("%f %f\n", game->vec->p_x, game->vec->p_y);
->>>>>>> e5fe036dc9f0bdccb1485c8174f4974db5e2af0a
     while (++x < WIDTH)
     {
         init_ray(&ray, x, game->vec);

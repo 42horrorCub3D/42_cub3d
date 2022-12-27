@@ -10,28 +10,36 @@ void	move_camera(t_vec *vec, int sign)
 
 void move_player_ad(t_game *game, int sign)
 {
-	double goal_x;
-	double goal_y;
+	double	goal_x;
+	double	goal_y;
+	char	contentX;
+	char	contentY;
 
 	goal_x = game->vec->p_x + game->vec->w_x * WALK_SPEED * sign;
 	goal_y = game->vec->p_y + game->vec->w_y * WALK_SPEED * sign;
-	if (game->map[(int)game->vec->p_y * game->col + (int)goal_x] == '0')
+	contentX = game->map[(int)game->vec->p_y * game->col + (int)goal_x];
+	contentY = game->map[(int)goal_y * game->col + (int)game->vec->p_x];
+	if (contentX != '1')
 		game->vec->p_x = goal_x;
-	if (game->map[(int)goal_y * game->col + (int)game->vec->p_x] == '0')
+	if (contentY != '1')
 		game->vec->p_y = goal_y;
 	make_view(game);
 }
 
 void move_player_sw(t_game *game, int sign)
 {
-	double goal_x;
-	double goal_y;
+	double	goal_x;
+	double	goal_y;
+	char	contentX;
+	char	contentY;
 
 	goal_x = game->vec->p_x + game->vec->d_x * WALK_SPEED * sign;
 	goal_y = game->vec->p_y + game->vec->d_y * WALK_SPEED * sign;
-	if (game->map[(int)game->vec->p_y * game->col + (int)goal_x] == '0')
+	contentX = game->map[(int)game->vec->p_y * game->col + (int)goal_x];
+	contentY = game->map[(int)goal_y * game->col + (int)game->vec->p_x];
+	if (contentX != '1')
 		game->vec->p_x = goal_x;
-	if (game->map[(int)goal_y * game->col + (int)game->vec->p_x] == '0')
+	if (contentY != '1')
 		game->vec->p_y = goal_y;
 	make_view(game);
 }

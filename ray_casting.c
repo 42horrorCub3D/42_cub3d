@@ -29,16 +29,9 @@ void dda(t_ray *ray, t_game *game, int x)
       {
         ray->wall_d = (ray->map_y - game->vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
       }
-<<<<<<< HEAD
 
       int lineHeight = (int)(HEIGHT / ray->wall_d);
 
-=======
-      if (ray->wall_d <= 0.000001)
-            ray->wall_d = 0.000001;
-      int lineHeight = (int)(HEIGHT / get_wall_size(ray, game->vec));
-      //printf("%d %f %d \n", lineHeight, ray->wall_d, HEIGHT);
->>>>>>> e5fe036dc9f0bdccb1485c8174f4974db5e2af0a
       int drawStart = -lineHeight / 2 + HEIGHT / 2;
       if(drawStart < 0)
       {
