@@ -7,6 +7,20 @@ int finish_window(t_game *game)
     exit(1);
 }
 
+void check_map_parsing(t_game *game)
+{
+    for (int row = 0; row < game->row; row++)
+    {
+        for (int col = 0; col < game->col; col++)
+        {
+            printf("%c", game->map[row * game->col + col]);
+        }
+        printf("\n");
+    }
+    printf("\n");
+    printf("col : %d row %d \n", game->col, game->row);
+}
+
 int main(int argc, char **argv) {
     int     fd;
     t_game  game;
@@ -20,16 +34,9 @@ int main(int argc, char **argv) {
     // draw(&game);
 
     game.mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGHT, "test");
-    make_view(&game);
-//     printf("key press2");
-    
-//    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
-
-//     printf("key press1");
-// 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
-//     printf("key press3");
-// 	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);
-    
+    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
+	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
+	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);
     mlx_loop(game.mlx_ptr);
     
     /* 맵 잘 찍히나 확인좀 */

@@ -51,7 +51,7 @@ void get_map(t_tmp *tmp, t_game *game, int fd) {
         else if (count > 7)
         {
             ft_lstadd_back(tmp, tmp_line, ft_strlen(tmp_line));    
-            tmp->row = row++;
+            tmp->row = ++row;
         }       
         free(tmp_line);
         tmp_line = get_next_line(fd);
