@@ -34,9 +34,22 @@ int main(int argc, char **argv) {
     // draw(&game);
 
     game.mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGHT, "test");
+<<<<<<< HEAD
     mlx_loop_hook(game.mlx_ptr, &make_view, &game);
 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
 	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);
+=======
+    make_view(&game);
+//     printf("key press2");
+    
+    mlx_loop_hook(game.mlx_ptr, &make_view, &game);
+
+//     printf("key press1");
+ 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
+//     printf("key press3");
+ 	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);
+    
+>>>>>>> e5fe036dc9f0bdccb1485c8174f4974db5e2af0a
     mlx_loop(game.mlx_ptr);
     
     /* 맵 잘 찍히나 확인좀 */

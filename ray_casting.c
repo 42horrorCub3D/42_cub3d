@@ -29,9 +29,16 @@ void dda(t_ray *ray, t_game *game, int x)
       {
         ray->wall_d = (ray->map_y - game->vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
       }
+<<<<<<< HEAD
 
       int lineHeight = (int)(HEIGHT / ray->wall_d);
 
+=======
+      if (ray->wall_d <= 0.000001)
+            ray->wall_d = 0.000001;
+      int lineHeight = (int)(HEIGHT / get_wall_size(ray, game->vec));
+      //printf("%d %f %d \n", lineHeight, ray->wall_d, HEIGHT);
+>>>>>>> e5fe036dc9f0bdccb1485c8174f4974db5e2af0a
       int drawStart = -lineHeight / 2 + HEIGHT / 2;
       if(drawStart < 0)
       {
@@ -52,23 +59,23 @@ void dda(t_ray *ray, t_game *game, int x)
 
       //printf("%d %d\n", drawStart, drawEnd);
       //verLine(x, drawStart, drawEnd, color);
-      for (int y = drawStart; y < drawEnd; y++)
+      for (int y = drawStart; y <= drawEnd; y++)
       {
         mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, color);
       }
 }
 
-// double get_wall_size(t_ray *ray, t_vec *vec)
-// {
-//     if (ray->side == 0)
-//     {
-//         ray->wall_d = (ray->map_x - vec->p_x + (1 - ray->step_x) / 2) / ray->ray_x;
-//         if (ray->wall_d <= 0.000001)
-//             ray->wall_d = 0.000001;
-//         return (vec->p_y + ray->ray_y * ray->wall_d);
-//     }
-//     ray->wall_d = (ray->map_y - vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
-//     if (ray->wall_d <= 0.000001)
-//         ray->wall_d = 0.000001;
-//     return (vec->p_x + ray->ray_x * ray->wall_d);
-// }
+double get_wall_size(t_ray *ray, t_vec *vec)
+{
+    if (ray->side == 0)
+    {
+        ray->wall_d = (ray->map_x - vec->p_x + (1 - ray->step_x) / 2) / ray->ray_x;
+        if (ray->wall_d <= 0.000001)
+            ray->wall_d = 0.000001;
+        return (vec->p_y + ray->ray_y * ray->wall_d);
+    }
+    ray->wall_d = (ray->map_y - vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
+    if (ray->wall_d <= 0.000001)
+        ray->wall_d = 0.000001;
+    return (vec->p_x + ray->ray_x * ray->wall_d);
+}
