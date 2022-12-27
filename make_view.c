@@ -18,7 +18,8 @@ int    make_view(t_game *game) {
     return (0);
 }
 
-void    draw_ceil_floor(t_game *game) {
+void    draw_ceil_floor(t_game *game)
+{
     int x;
     int y;
 
@@ -29,9 +30,15 @@ void    draw_ceil_floor(t_game *game) {
         while (y < HEIGHT)
         {
             if (y < HEIGHT / 2)
+                game->image->bg[y][x] = game->image->floor;
+            else
+                game->image->bg[y][x] = game->image->ceil;
+            /* 미리 그리기 -> 저장했다가 한꺼번에 그리기 
+            if (y < HEIGHT / 2)
                 mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->image->floor);
             else
                 mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->image->ceil);
+                */
             y++;
         }
         x++;

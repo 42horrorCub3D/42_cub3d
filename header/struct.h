@@ -6,7 +6,7 @@
 # define BUFFER_SIZE    (100)
 # define FAIL       (1)
 # define SUCCESS    (0)
-# define X_EVENT_KEY_RELEASE	(3)
+# define X_EVENT_KEY_PRESS  	(2)
 # define X_EVENT_KEY_EXIT		(17)
 # define KEY_ESC		    	(53)
 # define KEY_W			    	(13)
@@ -19,6 +19,7 @@
 # define HEIGHT                 (480)
 # define WALK_SPEED             (1)
 # define DEGREE                 (1)
+# define TEXTURE                (64)
 
 typedef struct s_node
 {
@@ -72,6 +73,7 @@ typedef struct s_image
     void    *no;
     int     ceil;
     int     floor;
+    int     **bg;
 } t_image;
 
 typedef struct s_game
