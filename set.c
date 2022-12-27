@@ -77,11 +77,11 @@ void set_vec(t_vec *vec, char dir)
     {
         vec->d_x = 0;
         vec->w_y = 0;
-        vec->d_y = 1;
+        vec->d_y = -1;
         vec->w_x = 0.66;
         if (dir == 'S')
         {
-            vec->d_y = -1;
+            vec->d_y = 1;
             vec->w_x = -0.66;
         }
     }
@@ -90,11 +90,11 @@ void set_vec(t_vec *vec, char dir)
         vec->d_y = 0;
         vec->w_x = 0;
         vec->d_x = 1;
-        vec->w_y = -0.66;
+        vec->w_y = 0.66;
         if (dir == 'W')
         {
             vec->d_x = -1;
-            vec->w_y = 0.66;
+            vec->w_y = -0.66;
         }
     }
 }
