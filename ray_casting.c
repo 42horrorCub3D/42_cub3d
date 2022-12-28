@@ -52,7 +52,7 @@ void dda(t_ray *ray, t_game *game, int x)
 
       //printf("%d %d\n", drawStart, drawEnd);
       //verLine(x, drawStart, drawEnd, color);
-      for (int y = drawStart; y <= drawEnd; y++)
+      for (int y = drawStart; y < drawEnd; y++)
       {
         mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, color);
       }

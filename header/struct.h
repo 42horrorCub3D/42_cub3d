@@ -1,6 +1,8 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# define _USE_MATH_DEFINES
+# include "math.h"
 # include "../mlx/mlx.h"
 
 # define BUFFER_SIZE    (100)
@@ -18,7 +20,7 @@
 # define WIDTH                  (680)
 # define HEIGHT                 (480)
 # define WALK_SPEED             (1)
-# define DEGREE                 (1)
+# define DEGREE                 (M_PI)
 
 typedef struct s_node
 {
