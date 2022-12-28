@@ -22,6 +22,15 @@
 # define WALK_SPEED             (1)
 # define DEGREE                 (M_PI)
 
+enum E_DIR {
+    BUF = 0,
+    NO = 1,
+    WE = 2,
+    EA = 3,
+    SO = 4,
+    DIR_CNT = 5,
+};
+
 typedef struct s_node
 {
     struct s_node  *next;
@@ -68,13 +77,13 @@ typedef struct s_ray
 
 typedef struct s_image
 {
-    void    *ea;
-    void    *so;
-    void    *we;
-    void    *no;
-    int     ceil;
-    int     floor;
+    void*       img_ptr;
+    char*       img_data;
+    int         bits;
+    int         line_size;
+    int         endien;
 } t_image;
+
 
 typedef struct s_game
 {
@@ -85,6 +94,8 @@ typedef struct s_game
     void        *mlx_ptr;
     void        *mlx_win;
     t_image     *image;
+    void        *floor;
+    void        *ceil;
     void		*win;
 } t_game;
 

@@ -29,9 +29,9 @@ void    draw_ceil_floor(t_game *game) {
         while (y < HEIGHT)
         {
             if (y < HEIGHT / 2)
-                mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->image->floor);
+                mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->floor);
             else
-                mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->image->ceil);
+                mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->ceil);
             y++;
         }
         x++;
