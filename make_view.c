@@ -36,5 +36,4 @@ void    draw_ceil_floor(t_game *game) {
 		}
 		y++;
 	}
-	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->image[BUF].img_ptr, 0, 0);
 }

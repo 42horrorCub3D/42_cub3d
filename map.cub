@@ -1,7 +1,7 @@
-NO ./texture/no.xpm
-SO ./texture/so.xpm
-WE ./texture/we.xpm
-EA ./texture/ea.xpm
+NO ./texture/N_Vinelike_Pattern.xpm
+SO ./texture/S_Wooden_Floor_Horizontal.xpm
+WE ./texture/W_Magma_Floor.xpm
+EA ./texture/E_Brick_Wall.xpm
 
 F 220,100,0
 C 225,30,0

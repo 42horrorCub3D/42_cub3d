@@ -46,6 +46,7 @@ void    get_map(t_tmp *tmp, t_game *game, int fd);
 /* ray_casting.c */
 void dda(t_ray *ray, t_game *game, int x);
 double get_wall_size(t_ray *ray, t_vec *vec);
+int     get_color_from_texture(t_game *g, t_ray *ray, int pos);
 
 /* set.c */
 void set_map(t_game *game, t_tmp *tmp);

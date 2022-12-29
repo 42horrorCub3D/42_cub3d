@@ -21,6 +21,9 @@
 # define HEIGHT                 (480)
 # define WALK_SPEED             (1)
 # define DEGREE                 (M_PI)
+# define TEX_WIDTH				(64)
+# define TEX_HEIGHT				(64)
+
 
 enum e_DIR {
 	BUF = 0,
