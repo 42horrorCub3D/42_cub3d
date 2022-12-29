@@ -24,16 +24,16 @@ void set_textures(t_game *game, char *tmp_line) {
 
     tmp = ft_split(tmp_line, ' ');
     if (!ft_strncmp(tmp[0], "NO", 2))
-        game->image->no = mlx_xpm_file_to_image(game->mlx_ptr, \
+        game->image[NO].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
             tmp[1], &width, &height);
     else if (!ft_strncmp(tmp[0], "WE", 2))
-        game->image->we = mlx_xpm_file_to_image(game->mlx_ptr, \
+        game->image[WE].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
             tmp[1], &width, &height);
     else if (!ft_strncmp(tmp[0], "EA", 2))
-        game->image->ea = mlx_xpm_file_to_image(game->mlx_ptr, \
+        game->image[EA].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
             tmp[1], &width, &height);
     else if (!ft_strncmp(tmp[0], "SO", 2))
-        game->image->so = mlx_xpm_file_to_image(game->mlx_ptr, \
+        game->image[SO].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
             tmp[1], &width, &height);
     else
         exit_with_error("Error\nTextures cannot upload\n");
@@ -63,9 +63,9 @@ void set_floor_ceiling(t_game *game, char *tmp_line)
     div_dir = ft_split(tmp_line, ' ');
     color_arr = ft_split(div_dir[1], ',');
     if (!ft_strncmp(div_dir[0], "F", 1))
-        set_color(&game->image->floor, color_arr);
+        set_color(&game->floor, color_arr);
     else if (!ft_strncmp(div_dir[0], "C", 1))
-        set_color(&game->image->ceil, color_arr);
+        set_color(&game->ceil, color_arr);
     else
         exit_with_error("Error\nWrong Argument");
 }

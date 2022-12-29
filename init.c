@@ -86,16 +86,8 @@ void init_game(t_game *game, int fd)
     tmp = (t_tmp *)malloc(sizeof(t_tmp));
     game->mlx_ptr = mlx_init();
     game->vec = (t_vec *)malloc(sizeof(t_vec));
-    game->image = (t_image *)malloc(sizeof(t_image));
-    game->image->ceil = 0;
-    game->image->floor = 0;
-    game->image->bg = malloc(sizeof(int *) * HEIGHT);
-    index = -1;
-    while (++index < WIDTH)
-    {
-        game->image->bg[index] = malloc(sizeof(int) * WIDTH);
-        ft_bzero(game->image->bg[index], WIDTH * sizeof(int));
-    }
+    game->ceil = 0;
+    game->floor = 0;
     init_tmp(tmp);
     get_map(tmp, game, fd);
     check_map(tmp);
