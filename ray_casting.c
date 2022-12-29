@@ -3,8 +3,11 @@
 
 void dda(t_ray *ray, t_game *game, int x)
 {
-    while (ray->hit == 0)
-    {
+    double wall;
+    int tex_x;
+
+	while (ray->hit == 0)
+	{
         if (ray->side_x < ray->side_y)
         {
             ray->side_x += ray->delta_x;
@@ -36,14 +39,14 @@ void dda(t_ray *ray, t_game *game, int x)
         ray->wall_d = (ray->map_y - game->vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
       }
 
-      int lineHeight = (int)(HEIGHT / ray->wall_d);
+			int lineHeight = (int)(HEIGHT / ray->wall_d);
 
-      int drawStart = -lineHeight / 2 + HEIGHT / 2;
-      if(drawStart < 0)
-      {
-        drawStart = 0;
-      }
-      int drawEnd = lineHeight / 2 + HEIGHT / 2;
+			int drawStart = -lineHeight / 2 + HEIGHT / 2;
+			if(drawStart < 0)
+			{
+				drawStart = 0;
+			}
+			int drawEnd = lineHeight / 2 + HEIGHT / 2;
 
       if(drawEnd >= HEIGHT)
       {
@@ -97,8 +100,7 @@ int get_color_from_texture(t_game *g, t_ray *ray, int pos)
   }
   else if (ray->side == 1)
   {
-    //pixel_color = g->image[WE].img_data[pos];
-    pixel_color = g->image[EA].img_data[pos];
+    pixel_color = g->image[WE].img_data[pos];
   }
   else if (ray->side == 0)
   {
@@ -109,15 +111,23 @@ int get_color_from_texture(t_game *g, t_ray *ray, int pos)
 
 double get_wall_size(t_ray *ray, t_vec *vec)
 {
-    if (ray->side == 0)
-    {
-        ray->wall_d = (ray->map_x - vec->p_x + (1 - ray->step_x) / 2) / ray->ray_x;
-        if (ray->wall_d <= 0.000001)
-            ray->wall_d = 0.000001;
-        return (vec->p_y + ray->ray_y * ray->wall_d);
-    }
-    ray->wall_d = (ray->map_y - vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
-    if (ray->wall_d <= 0.000001)
-        ray->wall_d = 0.000001;
-    return (vec->p_x + ray->ray_x * ray->wall_d);
+    double wall_size;
+
+	if (ray->side == 0)
+	{
+		ray->wall_d = (ray->map_x - vec->p_x + (1 - ray->step_x) / 2) / ray->ray_x;
+		if (ray->wall_d <= 0.000001)
+			ray->wall_d = 0.000001;
+        /* 추가 */
+        wall_size = vec->p_y + ray->ray_y * ray->wall_d;
+        return (wall_size - floor(wall_size));
+		//return (vec->p_y + ray->ray_y * ray->wall_d);
+	}
+	ray->wall_d = (ray->map_y - vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
+	if (ray->wall_d <= 0.000001)
+		ray->wall_d = 0.000001;
+    /* 추가 */
+    wall_size = vec->p_x + ray->ray_x * ray->wall_d;
+    return (wall_size - floor(wall_size));
+	//return (vec->p_x + ray->ray_x * ray->wall_d);
 }

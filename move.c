@@ -34,7 +34,6 @@ void move_player_ad(t_game *game, int sign)
 		game->vec->p_x = goal_x;
 	if (contentY != '1')
 		game->vec->p_y = goal_y;
-	make_view(game);
 }
 
 void move_player_sw(t_game *game, int sign)
@@ -52,11 +51,11 @@ void move_player_sw(t_game *game, int sign)
 		game->vec->p_x = goal_x;
 	if (contentY != '1')
 		game->vec->p_y = goal_y;
-	make_view(game);
 }
 
 int	key_press(int keycode, t_game *game)
 {
+	//printf("Before : %f\n\n", (game->vec->d_x*game->vec->w_x + game->vec->d_y*game->vec->w_y) / (sqrt(pow(game->vec->d_x, 2) + pow(game->vec->d_y, 2)) * (sqrt(pow(game->vec->w_x, 2) + pow(game->vec->w_y, 2)))));
     if (keycode == KEY_ESC)
 		exit_with_error("FINISHED\n");
 	else if (keycode == KEY_A)
