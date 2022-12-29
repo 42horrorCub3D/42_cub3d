@@ -22,7 +22,7 @@
 # define WALK_SPEED             (1)
 # define DEGREE                 (M_PI)
 
-enum E_DIR {
+enum e_DIR {
     BUF = 0,
     NO = 1,
     WE = 2,
