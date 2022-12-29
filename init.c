@@ -85,7 +85,6 @@ void init_game(t_game *game, int fd)
     tmp = (t_tmp *)malloc(sizeof(t_tmp));
     game->mlx_ptr = mlx_init();
     game->vec = (t_vec *)malloc(sizeof(t_vec));
-    game->image = (t_image *)malloc(sizeof(t_image) * DIR_CNT);
     game->ceil = 0;
     game->floor = 0;
     init_tmp(tmp);

@@ -78,7 +78,7 @@ typedef struct s_ray
 typedef struct s_image
 {
     void*       img_ptr;
-    char*       img_data;
+    int*        img_data;
     int         bits;
     int         line_size;
     int         endien;
@@ -93,9 +93,9 @@ typedef struct s_game
     t_vec       *vec;
     void        *mlx_ptr;
     void        *mlx_win;
-    t_image     *image;
-    void        *floor;
-    void        *ceil;
+    t_image     image[DIR_CNT];
+    int    floor;
+    int    ceil;
     void		*win;
 } t_game;
 

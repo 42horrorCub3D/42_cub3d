@@ -2,38 +2,39 @@
 #include <stdio.h>
 
 int    make_view(t_game *game) {
-    int x;
-    t_ray ray;
+	int x;
+	t_ray ray;
 
-    x = -1;
-    /* ceiling, floor draw */
-    draw_ceil_floor(game);
+	x = -1;
+	/* ceiling, floor draw */
+	draw_ceil_floor(game);
 
-    while (++x < WIDTH)
-    {
-        init_ray(&ray, x, game->vec);
-        init_side(&ray, game->vec);
-        dda(&ray, game, x);
-    }
-    return (0);
+	while (++x < WIDTH)
+	{
+		init_ray(&ray, x, game->vec);
+		init_side(&ray, game->vec);
+		dda(&ray, game, x);
+	}
+	return (0);
 }
 
 void    draw_ceil_floor(t_game *game) {
-    int x;
-    int y;
+	int x;
+	int y;
 
-    x = 0;
-    while (x < WIDTH)
-    {
-        y = 0;
-        while (y < HEIGHT)
-        {
-            if (y < HEIGHT / 2)
-                mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->floor);
-            else
-                mlx_pixel_put(game->mlx_ptr, game->mlx_win, x, y, game->ceil);
-            y++;
-        }
-        x++;
-    }
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			if (y < HEIGHT / 2)
+				game->image[BUF].img_data[y * WIDTH + x] = game->ceil;
+			else
+				game->image[BUF].img_data[y * WIDTH + x] = game->floor;
+			x++;
+		}
+		y++;
+	}
+	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->image[BUF].img_ptr, 0, 0);
 }
