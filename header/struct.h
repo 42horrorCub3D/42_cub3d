@@ -87,6 +87,18 @@ typedef struct s_image
 	int		endien;
 }	t_image;
 
+typedef struct s_wall
+{
+	double	wall_x;
+	double	step;
+	double	tex_pos;
+	int		tex_y;
+	int		tex_x;
+	int		line_h;
+	int		start;
+	int		end;	
+}	t_wall;
+
 typedef struct s_game
 {
 	char		*map;

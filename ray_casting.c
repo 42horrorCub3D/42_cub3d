@@ -1,8 +1,9 @@
 #include "./header/cub3d.h"
-#include <stdio.h>
 
-void dda(t_ray *ray, t_game *game, int x)
+void	dda(t_ray *ray, t_game *game, int x)
 {
+	t_wall wall;
+
 	while (ray->hit == 0)
 	{
 		if (ray->side_x < ray->side_y)
@@ -26,71 +27,33 @@ void dda(t_ray *ray, t_game *game, int x)
 		if (game->map[ray->map_y * game->col + ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	double wallX; //where exactly the wall was hit
+	calc_texture(ray, game, &wall);
+	draw_texture(game, ray, &wall, x);
 
-
-
-	wallX = get_wall_size(ray, game->vec);
-	wallX -= floor(wallX);
-
-	int texX = (int)(wallX * (double)TEX_WIDTH);
-	if((ray->side == 0 || ray->side == 1) && ray->ray_x > 0) texX = TEX_WIDTH - texX - 1;
-	if((ray->side == 2 || ray->side == 3) && ray->ray_y < 0) texX = TEX_WIDTH - texX - 1;
-	
-	int lineHeight = (int)(HEIGHT / ray->wall_d);
-
-			int drawStart = -lineHeight / 2 + HEIGHT / 2;
-			if(drawStart < 0)
-			{
-				drawStart = 0;
-			}
-			int drawEnd = lineHeight / 2 + HEIGHT / 2;
-
-	  if(drawEnd >= HEIGHT)
-	  {
-		drawEnd = HEIGHT - 1;
-	  }
-
-
-	  // DRAWING TEXUTRE 2
-
-	  double step = 1.0 * TEX_HEIGHT / lineHeight;
-	  // Starting texture coordinate
-	  double texPos = (drawStart - HEIGHT / 2 + lineHeight / 2) * step;
-	  for(int y = drawStart; y < drawEnd; y++)
-	  {
-		// Cast the texture coordinate to integer, and mask with (texHeight - 1) in case of overflow
-		int texY = (int)texPos & (TEX_HEIGHT - 1);
-		texPos += step;
-		int color_pos = TEX_HEIGHT * texY + texX;
-		game->image[BUF].img_data[x + WIDTH * y] = get_color_from_texture(game, ray, color_pos);
-	  }
-
-	  mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->image[BUF].img_ptr, 0, 0);
 }
 
-int get_color_from_texture(t_game *g, t_ray *ray, int pos)
+int	get_color_from_texture(t_game *g, t_ray *ray, int pos)
 {
-  int pixel_color;
+	int	pixel_color;
 
-  pixel_color = 0xFFFFFF;
-  if (ray->side == 3)
-  {
-	pixel_color = g->image[NO].img_data[pos];
-  }
-  else if (ray->side == 2)
-  {
-	pixel_color = g->image[SO].img_data[pos];
-  }
-  else if (ray->side == 1)
-  {
-	pixel_color = g->image[WE].img_data[pos];
-  }
-  else if (ray->side == 0)
-  {
-	pixel_color = g->image[EA].img_data[pos];
-  }
-  return pixel_color;
+	pixel_color = 0xFFFFFF;
+	if (ray->side == 3)
+	{
+		pixel_color = g->image[NO].img_data[pos];
+	}
+	else if (ray->side == 2)
+	{
+		pixel_color = g->image[SO].img_data[pos];
+	}
+	else if (ray->side == 1)
+	{
+		pixel_color = g->image[WE].img_data[pos];
+	}
+	else if (ray->side == 0)
+	{
+		pixel_color = g->image[EA].img_data[pos];
+	}
+	return (pixel_color);
 }
 
 double get_wall_size(t_ray *ray, t_vec *vec)
@@ -102,12 +65,47 @@ double get_wall_size(t_ray *ray, t_vec *vec)
 		ray->wall_d = (ray->map_x - vec->p_x + (1 - ray->step_x) / 2) / ray->ray_x;
 		if (ray->wall_d <= 0.000001)
 			ray->wall_d = 0.00001;
-		/* 추가 */
 		return (vec->p_y + ray->ray_y * ray->wall_d);
 	}
 	ray->wall_d = (ray->map_y - vec->p_y + (1 - ray->step_y) / 2) / ray->ray_y;
 	if (ray->wall_d <= 0.000001)
 		ray->wall_d = 0.00001;
-	/* 추가 */
 	return (vec->p_x + ray->ray_x * ray->wall_d);
+}
+
+void	calc_texture(t_ray *ray, t_game *game, t_wall *wall)
+{
+	wall->wall_x = get_wall_size(ray, game->vec);
+	wall->wall_x -= floor(wall->wall_x);
+	wall->tex_x = (int)(wall->wall_x * (double)TEX_WIDTH);
+	if ((ray->side == 0 || ray->side == 1) && ray->ray_x > 0)
+		wall->tex_x = TEX_WIDTH - wall->tex_x - 1;
+	if ((ray->side == 2 || ray->side == 3) && ray->ray_y < 0)
+		wall->tex_x = TEX_WIDTH - wall->tex_x - 1;
+	wall->line_h = (int)(HEIGHT / ray->wall_d);
+	wall->start = -wall->line_h / 2 + HEIGHT / 2;
+	if (wall->start < 0)
+		wall->start = 0;
+	wall->end = wall->line_h / 2 + HEIGHT / 2;
+	if (wall->end >= HEIGHT)
+		wall->end = HEIGHT - 1;
+}
+
+void	draw_texture(t_game *game, t_ray *ray, t_wall *wall, int x)
+{
+	int	y;
+	int color_pos;
+
+	y = wall->start;
+	wall->step = 1.0 * TEX_HEIGHT / wall->line_h;
+	wall->tex_pos = (wall->start - HEIGHT / 2 + wall->line_h / 2) * wall->step;
+	while (y < wall->end)
+	{
+		wall->tex_y = (int)wall->tex_pos & (TEX_HEIGHT - 1);
+		wall->tex_pos += wall->step;
+		color_pos = TEX_HEIGHT * wall->tex_y + wall->tex_x;
+		game->image[BUF].img_data[x + WIDTH * y] = get_color_from_texture(game, ray, color_pos);
+		y++;
+	}
+	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->image[BUF].img_ptr, 0, 0);
 }
