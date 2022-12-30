@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/30 20:37:22 by minslee           #+#    #+#             */
+/*   Updated: 2022/12/30 20:42:04 by minslee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
@@ -24,7 +36,6 @@
 # define TEX_WIDTH				(64)
 # define TEX_HEIGHT				(64)
 
-
 enum e_DIR {
 	BUF = 0,
 	NO = 1,
@@ -36,10 +47,10 @@ enum e_DIR {
 
 typedef struct s_node
 {
-	struct	s_node *next;
-	struct	s_node *prev;
-	char	*line;
-	int		col;
+	struct s_node	*next;
+	struct s_node	*prev;
+	char			*line;
+	int				col;
 }	t_node;
 
 typedef struct s_tmp
