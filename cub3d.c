@@ -6,26 +6,8 @@ int	finish_window(t_game *game)
 	exit(1);
 }
 
-/*
-void	check_map_parsing(t_game *game)
-{
-	for (int row = 0; row < game->row; row++)
-	{
-		for (int col = 0; col < game->col; col++)
-		{
-			printf("%c", game->map[row * game->col + col]);
-		}
-		printf("\n");
-	}
-	printf("\n");
-	printf("col : %d row %d \n", game->col, game->row);
-}
-*/
 void	set_images(t_game *game)
 {
-	/* 
-	줄 너무 길어서 변수 수정 필요 
-	*/
 	game->image[BUF].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	game->image[BUF].img_data = (int *)mlx_get_data_addr(game->image[BUF].img_ptr, &game->image[BUF].bits, &game->image[BUF].line_size, &game->image[BUF].endien);
 	game->image[NO].img_data = (int *)mlx_get_data_addr(game->image[NO].img_ptr, &game->image[NO].bits, &game->image[NO].line_size, &game->image[NO].endien);
