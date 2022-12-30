@@ -6,14 +6,19 @@ int	finish_window(t_game *game)
 	exit(1);
 }
 
-void	set_images(t_game *game)
+void	set_images(t_game *game, t_image *img)
 {
-	game->image[BUF].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
-	game->image[BUF].img_data = (int *)mlx_get_data_addr(game->image[BUF].img_ptr, &game->image[BUF].bits, &game->image[BUF].line_size, &game->image[BUF].endien);
-	game->image[NO].img_data = (int *)mlx_get_data_addr(game->image[NO].img_ptr, &game->image[NO].bits, &game->image[NO].line_size, &game->image[NO].endien);
-	game->image[SO].img_data = (int *)mlx_get_data_addr(game->image[SO].img_ptr, &game->image[SO].bits, &game->image[SO].line_size, &game->image[SO].endien);
-	game->image[WE].img_data = (int *)mlx_get_data_addr(game->image[WE].img_ptr, &game->image[WE].bits, &game->image[WE].line_size, &game->image[WE].endien);
-	game->image[EA].img_data = (int *)mlx_get_data_addr(game->image[EA].img_ptr, &game->image[EA].bits, &game->image[EA].line_size, &game->image[EA].endien);
+	img[BUF].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
+	img[BUF].img_data = (int *)mlx_get_data_addr(img[BUF].img_ptr, \
+		&img[BUF].bits, &img[BUF].line_size, &img[BUF].endien);
+	img[NO].img_data = (int *)mlx_get_data_addr(img[NO].img_ptr, \
+		&img[NO].bits, &img[NO].line_size, &img[NO].endien);
+	img[SO].img_data = (int *)mlx_get_data_addr(img[SO].img_ptr, \
+		&img[SO].bits, &img[SO].line_size, &img[SO].endien);
+	img[WE].img_data = (int *)mlx_get_data_addr(img[WE].img_ptr, \
+		&img[WE].bits, &img[WE].line_size, &img[WE].endien);
+	img[EA].img_data = (int *)mlx_get_data_addr(img[EA].img_ptr, \
+		&img[EA].bits, &img[EA].line_size, &img[EA].endien);
 }
 
 int	main(int argc, char **argv)
@@ -27,10 +32,7 @@ int	main(int argc, char **argv)
 	if (fd == FAIL)
 		exit_with_error("Error\nFail to open file!\n");
 	init_game(&game, fd);
-	/*
-	check_map_parsing(&game);
-	*/
-	set_images(&game);
+	set_images(&game, game.image);
 	game.mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGHT, "test");
 	mlx_loop_hook(game.mlx_ptr, &make_view, &game);
 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
