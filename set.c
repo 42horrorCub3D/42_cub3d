@@ -6,14 +6,14 @@ void    set_map(t_game *game, t_tmp *tmp)
 {
     t_node *node;
 
-    node = tmp->head->next;
+    node = tmp->tail->prev;
     game->map = (char *)malloc(sizeof(char) * (tmp->row * tmp->max_col + 1));
     game->row = tmp->row;
     game->col = tmp->max_col;
-    while (node != tmp->tail)
+    while (node != tmp->head)
     {
         game->map = ft_strjoin(game->map, node->line);
-        node = node->next;
+        node = node->prev;
     }
 }
 
@@ -23,6 +23,7 @@ void set_textures(t_game *game, char *tmp_line) {
     char **tmp;
     int index;
 
+// 나중에 따로 함수로 뺄 것 + 하단 예외처리 각각
     tmp = ft_split(tmp_line, ' ');
     if (!ft_strncmp(tmp[0], "NO", 2))
         game->image[NO].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
@@ -38,10 +39,11 @@ void set_textures(t_game *game, char *tmp_line) {
             tmp[1], &width, &height);
     else
         exit_with_error("Error\nNot Proper Direction\n");
-    index = -1;
-    while (++index < 4)
-        if (!game->image[index].img_ptr)
-            exit_with_error("Error\nXpm File Does Not Exist\n");
+    index = 0;
+
+    // while (++index < 5)
+    //     if (!game->image[index].img_ptr)
+    //         exit_with_error("Error\nXpm File Does Not Exist\n");
     free_str(tmp, 2);
 }
 
