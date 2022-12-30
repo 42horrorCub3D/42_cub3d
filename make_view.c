@@ -4,6 +4,7 @@ int	make_view(t_game *game)
 {
 	int		x;
 	t_ray	ray;
+	t_wall	wall;
 
 	x = -1;
 	draw_ceil_floor(game);
@@ -11,7 +12,7 @@ int	make_view(t_game *game)
 	{
 		init_ray(&ray, x, game->vec);
 		init_side(&ray, game->vec);
-		dda(&ray, game, x);
+		dda(&ray, game, x, &wall);
 	}
 	return (0);
 }

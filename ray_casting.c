@@ -1,9 +1,7 @@
 #include "./header/cub3d.h"
 
-void	dda(t_ray *ray, t_game *game, int x)
+void	dda(t_ray *ray, t_game *game, int x, t_wall *wall)
 {
-	t_wall wall;
-
 	while (ray->hit == 0)
 	{
 		if (ray->side_x < ray->side_y)
@@ -27,9 +25,8 @@ void	dda(t_ray *ray, t_game *game, int x)
 		if (game->map[ray->map_y * game->col + ray->map_x] == '1')
 			ray->hit = 1;
 	}
-	calc_texture(ray, game, &wall);
-	draw_texture(game, ray, &wall, x);
-
+	calc_texture(ray, game, wall);
+	draw_texture(game, ray, wall, x);
 }
 
 int	get_color_from_texture(t_game *g, t_ray *ray, int pos)
@@ -56,13 +53,14 @@ int	get_color_from_texture(t_game *g, t_ray *ray, int pos)
 	return (pixel_color);
 }
 
-double get_wall_size(t_ray *ray, t_vec *vec)
+double	get_wall_size(t_ray *ray, t_vec *vec)
 {
-	double wall_size;
+	double	wall_size;
 
 	if (ray->side == 0 || ray->side == 1)
 	{
-		ray->wall_d = (ray->map_x - vec->p_x + (1 - ray->step_x) / 2) / ray->ray_x;
+		ray->wall_d = (ray->map_x - vec->p_x + \
+			(1 - ray->step_x) / 2) / ray->ray_x;
 		if (ray->wall_d <= 0.000001)
 			ray->wall_d = 0.00001;
 		return (vec->p_y + ray->ray_y * ray->wall_d);
@@ -94,7 +92,7 @@ void	calc_texture(t_ray *ray, t_game *game, t_wall *wall)
 void	draw_texture(t_game *game, t_ray *ray, t_wall *wall, int x)
 {
 	int	y;
-	int color_pos;
+	int	color_pos;
 
 	y = wall->start;
 	wall->step = 1.0 * TEX_HEIGHT / wall->line_h;
@@ -104,8 +102,10 @@ void	draw_texture(t_game *game, t_ray *ray, t_wall *wall, int x)
 		wall->tex_y = (int)wall->tex_pos & (TEX_HEIGHT - 1);
 		wall->tex_pos += wall->step;
 		color_pos = TEX_HEIGHT * wall->tex_y + wall->tex_x;
-		game->image[BUF].img_data[x + WIDTH * y] = get_color_from_texture(game, ray, color_pos);
+		game->image[BUF].img_data[x + WIDTH * y] = \
+			get_color_from_texture(game, ray, color_pos);
 		y++;
 	}
-	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, game->image[BUF].img_ptr, 0, 0);
+	mlx_put_image_to_window(game->mlx_ptr, game->mlx_win, \
+		game->image[BUF].img_ptr, 0, 0);
 }
