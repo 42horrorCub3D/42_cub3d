@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libft.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/12/30 20:37:26 by minslee           #+#    #+#             */
+/*   Updated: 2022/12/30 20:41:02 by minslee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef LIBFT_H
 # define LIBFT_H
 
@@ -44,6 +56,5 @@ void	ft_putnbr_fd(int n, int fd);
 
 t_node	*ft_lstnew(char *tmp_line, int col);
 void	ft_lstadd_back(t_tmp *tmp, char *tmp_line, int col);
-
 
 #endif
