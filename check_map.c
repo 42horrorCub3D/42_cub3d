@@ -47,14 +47,14 @@ int check_map(t_tmp *tmp)
     t_node  *node;
 
     node = tmp->head->next;
-    if (check_top_bottom(node->line))
+    if (check_top_bottom(node->line) == FAIL)
         return (FAIL);
     while (node != tmp->tail)
     {
         if (node == tmp->head->next || node == tmp->head->prev)
-            if (check_top_bottom(node->line))
+            if (check_top_bottom(node->line) == FAIL)
                 return (FAIL);
-        if (check_middle(node))
+        if (check_middle(node) == FAIL)
             return (FAIL);
         node = node->next;
     }

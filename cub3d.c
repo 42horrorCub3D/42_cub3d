@@ -39,7 +39,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		exit_with_error("Error\nWrong Argument!\n");
 	fd = open_map(argv[1]);
-	if (fd == 0)
+	if (fd == FAIL)
 		exit_with_error("Error\nFail to open file!\n");
 	init_game(&game, fd);
 	check_map_parsing(&game);
