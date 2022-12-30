@@ -48,6 +48,9 @@ void dda(t_ray *ray, t_game *game, int x);
 double get_wall_size(t_ray *ray, t_vec *vec);
 int     get_color_from_texture(t_game *g, t_ray *ray, int pos);
 
+/* set_utils.c */
+void	set_textures_util(t_game *game, char **tmp, int dir);
+
 /* set.c */
 void set_map(t_game *game, t_tmp *tmp);
 void set_textures(t_game *game, char *tmp_line);

@@ -12,7 +12,7 @@ MLX = -L./$(MLX_DIR) -lmlx -framework OpenGL -framework Appkit
 GNL = gnl/get_next_line.c
 
 SRCS = check_image.c check_map.c cub3d.c error.c init.c make_view.c \
-	move.c parse_map.c ray_casting.c set.c
+	move.c parse_map.c ray_casting.c set_utils.c set.c
 
 OBJS = $(SRCS:.c=.o) $(GNL:.c=.o)
 
