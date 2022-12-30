@@ -81,7 +81,6 @@ void init_tmp(t_tmp *tmp) {
 void init_game(t_game *game, int fd)
 {
     t_tmp *tmp;
-    int index;
 
     tmp = (t_tmp *)malloc(sizeof(t_tmp));
     game->mlx_ptr = mlx_init();
