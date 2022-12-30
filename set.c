@@ -6,7 +6,7 @@
 /*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:37:10 by minslee           #+#    #+#             */
-/*   Updated: 2022/12/30 20:37:10 by minslee          ###   ########.fr       */
+/*   Updated: 2022/12/30 20:50:35 by minslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@ void	set_map(t_game *game, t_tmp *tmp)
 {
 	t_node	*node;
 
-	node = tmp->tail->prev;
+	node = tmp->head->next;
 	game->map = (char *)malloc(sizeof(char) * (tmp->row * tmp->max_col + 1));
 	game->row = tmp->row;
 	game->col = tmp->max_col;
-	while (node != tmp->head)
+	while (node != tmp->tail)
 	{
 		game->map = ft_strjoin(game->map, node->line);
-		node = node->prev;
+		node = node->next;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:36:57 by minslee           #+#    #+#             */
-/*   Updated: 2022/12/30 20:36:57 by minslee          ###   ########.fr       */
+/*   Updated: 2022/12/30 20:44:55 by minslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ void	fill_map(t_tmp *tmp)
 {
 	t_node	*node;
 
-	node = tmp->head->next;
-	while (node != tmp->tail)
+	node = tmp->tail->prev;
+	while (node != tmp->head)
 	{
 		if (node->col < tmp->max_col)
 			while ((int)ft_strlen(node->line) < tmp->max_col)
 				node->line = ft_strjoin(node->line, " ");
-		node = node->next;
+		node = node->prev;
 	}
 }
 
