@@ -1,14 +1,12 @@
 #include "./header/cub3d.h"
-#include <stdio.h>
 
-int    make_view(t_game *game) {
-	int x;
-	t_ray ray;
+int	make_view(t_game *game)
+{
+	int		x;
+	t_ray	ray;
 
 	x = -1;
-	/* ceiling, floor draw */
 	draw_ceil_floor(game);
-
 	while (++x < WIDTH)
 	{
 		init_ray(&ray, x, game->vec);
@@ -18,9 +16,10 @@ int    make_view(t_game *game) {
 	return (0);
 }
 
-void    draw_ceil_floor(t_game *game) {
-	int x;
-	int y;
+void	draw_ceil_floor(t_game *game)
+{
+	int	x;
+	int	y;
 
 	y = 0;
 	while (y < HEIGHT)
