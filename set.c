@@ -21,6 +21,7 @@ void set_textures(t_game *game, char *tmp_line) {
     int width;
     int height;
     char **tmp;
+    int index;
 
     tmp = ft_split(tmp_line, ' ');
     if (!ft_strncmp(tmp[0], "NO", 2))
@@ -36,7 +37,11 @@ void set_textures(t_game *game, char *tmp_line) {
         game->image[SO].img_ptr = mlx_xpm_file_to_image(game->mlx_ptr, \
             tmp[1], &width, &height);
     else
-        exit_with_error("Error\nTextures cannot upload\n");
+        exit_with_error("Error\nNot Proper Direction\n");
+    index = -1;
+    while (++index < 4)
+        if (!game->image[index].img_ptr)
+            exit_with_error("Error\nXpm File Does Not Exist\n");
     free_str(tmp, 2);
 }
 

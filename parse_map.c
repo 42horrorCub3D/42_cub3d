@@ -57,6 +57,10 @@ void get_map(t_tmp *tmp, t_game *game, int fd) {
         tmp_line = get_next_line(fd);
         count++;
 	}    
+    // for (int i = 0; i < 4; i++) {
+    //     printf("i = %d\n", game->image[i].img_ptr);
+    // }
+    // printf("=========================\n");
 	free(tmp_line);
 	close(fd);
     get_max_col(tmp);
