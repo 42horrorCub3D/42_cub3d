@@ -6,7 +6,7 @@
 /*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:37:10 by minslee           #+#    #+#             */
-/*   Updated: 2022/12/30 20:50:35 by minslee          ###   ########.fr       */
+/*   Updated: 2022/12/30 21:00:24 by minslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	set_textures(t_game *game, char *tmp_line)
 	char	**tmp;
 
 	tmp = ft_split(tmp_line, ' ');
+	if (!check_2d_array(tmp, 2))
+		exit_with_error("Error\nWrong Arguments\n");
 	if (!ft_strncmp(tmp[0], "NO", 2))
 		set_textures_util(game, tmp, NO);
 	else if (!ft_strncmp(tmp[0], "WE", 2))
@@ -67,7 +69,11 @@ void	set_floor_ceiling(t_game *game, char *tmp_line)
 	char	**color_arr;
 
 	div_dir = ft_split(tmp_line, ' ');
+	if (!check_2d_array(div_dir, 2))
+		exit_with_error("Error\nWrong Arguments\n");
 	color_arr = ft_split(div_dir[1], ',');
+	if (!check_2d_array(color_arr, 3))
+		exit_with_error("Error\nWrong Arguments\n");
 	if (!ft_strncmp(div_dir[0], "F", 1))
 		set_color(&game->floor, color_arr);
 	else if (!ft_strncmp(div_dir[0], "C", 1))

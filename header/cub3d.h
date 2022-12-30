@@ -6,7 +6,7 @@
 /*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:37:39 by minslee           #+#    #+#             */
-/*   Updated: 2022/12/30 20:40:08 by minslee          ###   ########.fr       */
+/*   Updated: 2022/12/30 20:59:59 by minslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		check_top_bottom(char *line);
 int		check_side(char *line);
 int		check_middle(t_node *node);
 int		check_map(t_tmp *tmp);
+int		check_2d_array(char **str, int count);
 
 /* error.c */
 void	exit_with_error(const char *msg);

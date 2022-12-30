@@ -6,7 +6,7 @@
 /*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/30 20:36:18 by minslee           #+#    #+#             */
-/*   Updated: 2022/12/30 20:36:19 by minslee          ###   ########.fr       */
+/*   Updated: 2022/12/30 21:00:15 by minslee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,17 @@ int	check_map(t_tmp *tmp)
 			return (FAIL);
 		node = node->next;
 	}
+	return (SUCCESS);
+}
+
+int	check_2d_array(char **str, int count)
+{
+	int	index;
+
+	index = 0;
+	while (str[index] != NULL)
+		index++;
+	if (index != count)
+		return (FAIL);
 	return (SUCCESS);
 }
