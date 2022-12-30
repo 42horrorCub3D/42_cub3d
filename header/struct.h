@@ -6,8 +6,8 @@
 # include "../mlx/mlx.h"
 
 # define BUFFER_SIZE    (100)
-# define FAIL       (1)
-# define SUCCESS    (0)
+# define FAIL       (0)
+# define SUCCESS    (1)
 # define X_EVENT_KEY_RELEASE	(2)
 # define X_EVENT_KEY_EXIT		(17)
 # define KEY_ESC		    	(53)

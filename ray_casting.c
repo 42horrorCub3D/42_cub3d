@@ -23,10 +23,12 @@ void dda(t_ray *ray, t_game *game, int x)
 			else
 				ray->side = 3;
 		}
-		if (game->map[ray->map_y * game->row + ray->map_x] == '1')
+		if (game->map[ray->map_y * game->col + ray->map_x] == '1')
 			ray->hit = 1;
 	}
 	double wallX; //where exactly the wall was hit
+
+
 
 	wallX = get_wall_size(ray, game->vec);
 	wallX -= floor(wallX);
