@@ -30,6 +30,7 @@ void	set_map(t_game *game, t_tmp *tmp)
 void	set_textures(t_game *game, char *tmp_line)
 {
 	char	**tmp;
+	int		arr_len;
 
 	tmp = ft_split(tmp_line, ' ');
 	if (!check_2d_array(tmp, 2))
@@ -44,7 +45,8 @@ void	set_textures(t_game *game, char *tmp_line)
 		set_textures_util(game, tmp, SO);
 	else
 		exit_with_error("Error\nNot Proper Direction\n");
-	free_str(tmp, 2);
+	arr_len = get_length_spilited(tmp);
+	free_str(tmp, arr_len);
 }
 
 void	set_color(int *dir, char **color_arr)
@@ -67,6 +69,7 @@ void	set_floor_ceiling(t_game *game, char *tmp_line)
 {
 	char	**div_dir;
 	char	**color_arr;
+	int		arr_len;
 
 	div_dir = ft_split(tmp_line, ' ');
 	if (!check_2d_array(div_dir, 2))
@@ -80,6 +83,10 @@ void	set_floor_ceiling(t_game *game, char *tmp_line)
 		set_color(&game->ceil, color_arr);
 	else
 		exit_with_error("Error\nWrong Argument");
+	arr_len = get_length_spilited(div_dir);
+	free_str(div_dir, arr_len);
+	arr_len = get_length_spilited(color_arr);
+	free_str(color_arr, arr_len);
 }
 
 void	set_vec(t_vec *vec, char dir)

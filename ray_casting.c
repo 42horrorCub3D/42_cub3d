@@ -67,8 +67,6 @@ int	get_color_from_texture(t_game *g, t_ray *ray, int pos)
 
 double	get_wall_size(t_ray *ray, t_vec *vec)
 {
-	double	wall_size;
-
 	if (ray->side == 0 || ray->side == 1)
 	{
 		ray->wall_d = (ray->map_x - vec->p_x + \

@@ -105,4 +105,6 @@ void	init_game(t_game *game, int fd)
 	fill_map(tmp);
 	init_vec(tmp, game->vec);
 	set_map(game, tmp);
+	free_tmp(tmp);
 }
+
