@@ -73,4 +73,8 @@ void	set_color(int *dir, char **color_arr);
 void	set_floor_ceiling(t_game *game, char *tmp_line);
 void	set_vec(t_vec *vec, char dir);
 
+/* ft_free.c */
+void	free_tmp(t_tmp *tmp);
+int     get_length_spilited(char **arr);
+
 #endif

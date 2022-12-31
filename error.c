@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header/cub3d.h">
+#include "header/cub3d.h"
 
 void	exit_with_error(const char *msg)
 {
