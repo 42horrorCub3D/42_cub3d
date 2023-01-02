@@ -20,6 +20,8 @@ int	finish_window(t_game *game)
 
 void	set_images(t_game *game, t_image *img)
 {
+	void	*mlx_ptrs[6];
+
 	img[BUF].img_ptr = mlx_new_image(game->mlx_ptr, WIDTH, HEIGHT);
 	img[BUF].img_data = (int *)mlx_get_data_addr(img[BUF].img_ptr, \
 		&img[BUF].bits, &img[BUF].line_size, &img[BUF].endien);
@@ -31,6 +33,13 @@ void	set_images(t_game *game, t_image *img)
 		&img[WE].bits, &img[WE].line_size, &img[WE].endien);
 	img[EA].img_data = (int *)mlx_get_data_addr(img[EA].img_ptr, \
 		&img[EA].bits, &img[EA].line_size, &img[EA].endien);
+	mlx_ptrs[0] = img[BUF].img_ptr;
+	mlx_ptrs[1] = img[BUF].img_data;
+	mlx_ptrs[2] = img[NO].img_data;
+	mlx_ptrs[3] = img[SO].img_data;
+	mlx_ptrs[4] = img[WE].img_data;
+	mlx_ptrs[5] = img[EA].img_data;
+	check_mlx_ptr_load(mlx_ptrs);
 }
 
 int	main(int argc, char **argv)
@@ -44,8 +53,12 @@ int	main(int argc, char **argv)
 	if (fd == FAIL)
 		exit_with_error("Error\nFail to open file!\n");
 	init_game(&game, fd);
+	if (game.mlx_ptr == NULL)
+		exit_with_error("Error\nFail to use MLX library!\n");
 	set_images(&game, game.image);
 	game.mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGHT, "test");
+	if (game.mlx_ptr == NULL)
+		exit_with_error("Error\nFail to use MLX library!\n");
 	mlx_loop_hook(game.mlx_ptr, &make_view, &game);
 	mlx_hook(game.mlx_win, X_EVENT_KEY_RELEASE, 0, &key_press, &game);
 	mlx_hook(game.mlx_win, X_EVENT_KEY_EXIT, 0, &finish_window, &game);

@@ -76,5 +76,6 @@ void	set_vec(t_vec *vec, char dir);
 /* ft_free.c */
 void	free_tmp(t_tmp *tmp);
 int     get_length_spilited(char **arr);
+void	check_mlx_ptr_load(void **mlx_ptrs);
 
 #endif

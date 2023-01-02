@@ -45,3 +45,15 @@ int	get_length_spilited(char **arr)
 
 	return (length);
 }
+
+void	check_mlx_ptr_load(void **mlx_ptrs)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 5)
+	{
+		if (mlx_ptrs[i] == NULL)
+			exit_with_error("Error\nFail to use MLX library!\n");
+	}
+}
