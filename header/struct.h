@@ -18,6 +18,7 @@
 # include "../mlx/mlx.h"
 
 # define BUFFER_SIZE    (100)
+# define COMPONENT_SIZE (6)
 # define FAIL       (0)
 # define SUCCESS    (1)
 # define X_EVENT_KEY_RELEASE	(2)
@@ -31,7 +32,7 @@
 # define KEY_L                  (123)
 # define WIDTH                  (680)
 # define HEIGHT                 (480)
-# define WALK_SPEED             (1)
+# define WALK_SPEED             (2)
 # define DEGREE                 (M_PI)
 # define TEX_WIDTH				(64)
 # define TEX_HEIGHT				(64)
