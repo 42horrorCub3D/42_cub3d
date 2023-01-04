@@ -11,7 +11,8 @@
 /* ************************************************************************** */
 
 #include "header/cub3d.h"
-
+#include <stdio.h>
+#include <string.h>
 void	set_tmp(t_tmp *tmp, char *tmp_line, int *row)
 {
 	ft_lstadd_back(tmp, tmp_line, ft_strlen(tmp_line));
@@ -51,45 +52,32 @@ void	get_max_col(t_tmp *tmp)
 void	get_map(t_tmp *tmp, t_game *game, int fd)
 {
 	char	*tmp_line;
-	int		flag;
-	int		is_component;
 	int		row;
-	int		length;
-	int		is_frist_line;
 
 	row = 0;
-	flag = 0;
-	is_component = FAIL;
-	is_frist_line = FAIL;
 	tmp_line = get_next_line(fd);
 	while (tmp_line != NULL)
 	{
-		length = ft_strlen(tmp_line);
-		if (tmp_line[length - 1] == '\n')
-		tmp_line[length - 1] = '\0';
-		if (is_texture(tmp_line, &flag) == SUCCESS)
+		if (tmp_line[ft_strlen(tmp_line) - 1] == '\n')
+			tmp_line[ft_strlen(tmp_line) - 1] = '\0';
+		if (is_texture(tmp_line, &tmp->flag) == SUCCESS)
 			set_textures(game, tmp_line);
-		else if (is_background(tmp_line, &flag) == SUCCESS)
+		else if (is_background(tmp_line, &tmp->flag) == SUCCESS)
 			set_floor_ceiling(game, tmp_line);
-		else if (check_flag(&flag, COMPONENT_SIZE) == SUCCESS \
-		&& check_map_content(tmp_line) == SUCCESS && tmp_line[0] != '\0')
+		else if (check_flag(&tmp->flag, COMPONENT_SIZE) == SUCCESS && check_map_content(tmp_line) == SUCCESS)
 		{
 			set_tmp(tmp, tmp_line, &row);
-			is_component = SUCCESS;
-			is_frist_line = SUCCESS;
+			tmp->is_component = SUCCESS;
 		}
-		else if (length != 1 || tmp_line[0] != '\0' \
-		|| (is_frist_line == SUCCESS && tmp_line[0] == '\0'))
+		else if (ft_strlen(tmp_line) != 0 || tmp_line[0] != '\0')
 		{
-			exit_with_error("Error\nWrong Map Component!\n");
+			exit_with_error("Error\nWrong Map Component! 1\n");
 		}
 		set_next_line(fd, &tmp_line);
 	}
 	free(tmp_line);
-	close(fd);
-	if (is_component == FAIL)
-		exit_with_error("Error\nWrong Map Component!\n");
-	get_max_col(tmp);
+	if (tmp->is_component == FAIL)
+		exit_with_error("Error\nWrong Map Component! 2\n");
 }
 
 int	open_map(const char *file)

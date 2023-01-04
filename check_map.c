@@ -25,8 +25,9 @@ int	check_top_bottom(char *line)
 
 int	check_side(char *line)
 {
-	if (line[0] == '0' || line[ft_strlen(line) - 1] == '0')
-		return (FAIL);
+	if (ft_strlen(line) > 0)
+		if (line[0] == '0' || line[ft_strlen(line) - 1] == '0')
+			return (FAIL);
 	return (SUCCESS);
 }
 
@@ -35,19 +36,31 @@ int	check_middle(t_node *node)
 	size_t	index;
 
 	index = 1;
-	if (check_side(node->line))
+	if (check_side(node->line) == FAIL)
+	{
+		printf("%d\n", 1);
 		return (FAIL);
-	while (index != ft_strlen(node->line))
+	}
+	while (index < ft_strlen(node->line))
 	{
 		if ((int)index >= node->prev->col)
 			if (node->line[index] == '0')
+			{
+				printf("%d\n", 2);
 				return (FAIL);
+			}
 		if (node->line[index] == '0' && node->prev->line[index] == ' ')
+		{
+			printf("%d\n", 3);
 			return (FAIL);
+		}
 		else if (node->line[index] == ' ')
 			if (node->prev->line[index] == '0' || \
 			node->line[index - 1] == '0' || node->line[index + 1] == '0')
+			{
+				printf("%d\n", 4);
 				return (FAIL);
+			}
 		index++;
 	}
 	return (SUCCESS);
@@ -59,19 +72,48 @@ int	check_map(t_tmp *tmp)
 
 	node = tmp->head->next;
 	if (check_top_bottom(node->line) == FAIL)
+	{
+		printf("%d\n", 1);
 		return (FAIL);
+	}
+	if (node->line[0] == '\n' && check_nl(node, tmp) == FAIL)
+	{
+		printf("%d\n", 2);
+		return (FAIL);
+	}
 	while (node != tmp->tail)
 	{
+		if (check_map_content(node->line) == FAIL)
+		{
+			printf("%d\n", 3);
+			return (FAIL);
+		}
 		if (node == tmp->head->next || node == tmp->head->prev)
 			if (check_top_bottom(node->line) == FAIL)
+			{
+				printf("%d\n", 4);
 				return (FAIL);
+			}
 		if (check_middle(node) == FAIL)
+		{
+			printf("%d\n", 5);
 			return (FAIL);
+		}
 		node = node->next;
 	}
 	return (SUCCESS);
 }
 
+int check_nl(t_node *node, t_tmp *tmp)
+{
+	while (node != tmp->tail)
+	{
+		if (ft_strncmp(node->line, "\n", 1) != 0)
+			return (FAIL);
+		node = node->next;
+	}
+	return (SUCCESS);
+}
 int	check_2d_array(char **str, int count)
 {
 	int	index;

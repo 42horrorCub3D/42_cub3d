@@ -60,6 +60,8 @@ typedef struct s_tmp
 	t_node	*tail;
 	int		max_col;
 	int		row;
+	int		flag;
+	int		is_component;
 }	t_tmp;
 
 typedef struct s_vec

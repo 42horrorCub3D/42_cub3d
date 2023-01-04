@@ -138,7 +138,7 @@ int	check_map_content(char *line)
 		if (is_content == FAIL)
 			return (FAIL);
         is_content = FAIL;
-        j = 0;
+        j = -1;
     }
 	return (SUCCESS);
 }

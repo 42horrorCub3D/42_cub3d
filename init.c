@@ -88,6 +88,8 @@ void	init_tmp(t_tmp *tmp)
 	tmp->head->prev = tmp->head;
 	tmp->tail->next = tmp->tail;
 	tmp->tail->prev = tmp->head;
+	tmp->is_component = FAIL;
+	tmp->flag = 0;
 }
 
 void	init_game(t_game *game, int fd)
@@ -101,10 +103,17 @@ void	init_game(t_game *game, int fd)
 	game->floor = 0;
 	init_tmp(tmp);
 	get_map(tmp, game, fd);
-	check_map(tmp);
+	get_max_col(tmp);
+	if (check_map(tmp) == FAIL)
+	{	
+		printf("%d\n", tmp->max_col);
+		printf("%s\n", tmp->tail->prev->line);
+		exit_with_error("Error\nMap check failed\n");
+	}
 	fill_map(tmp);
 	init_vec(tmp, game->vec);
 	set_map(game, tmp);
 	free_tmp(tmp);
+	close(fd);
 }
 

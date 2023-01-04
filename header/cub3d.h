@@ -20,6 +20,9 @@
 # include "struct.h"
 # include "get_next_line.h"
 
+
+# include <stdio.h>
+
 /* check_imgae.c */
 int		check_is_all_digit(char *str);
 int		check_color(char **str);
@@ -30,6 +33,7 @@ int		check_side(char *line);
 int		check_middle(t_node *node);
 int		check_map(t_tmp *tmp);
 int		check_2d_array(char **str, int count);
+int check_nl(t_node *node, t_tmp *tmp);
 
 /* check_map2.c*/
 int     is_texture(char *line, int *result);
@@ -64,6 +68,7 @@ int		key_press(int keycode, t_game *game);
 void	fill_map(t_tmp *tmp);
 int		open_map(const char *file);
 void	get_map(t_tmp *tmp, t_game *game, int fd);
+void	get_max_col(t_tmp *tmp);
 
 /* ray_casting.c */
 void	dda(t_ray *ray, t_game *game, int x, t_wall *wall);
