@@ -1,21 +1,16 @@
 
-
 NO ./texture/north.xpm
-
-
-
 SO ./texture/south.xpm
+
+
 
 WE ./texture/west.xpm
 
-
 EA ./texture/east.xpm
+
 
 C 19,51,55
 F 51,51,51
-
-
-
 
 
 

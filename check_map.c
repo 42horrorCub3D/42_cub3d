@@ -67,7 +67,7 @@ int	check_map(t_tmp *tmp)
 	{
 		if (check_map_content(node->line) == FAIL)
 			return (FAIL);
-		if (node == tmp->head->next || node == tmp->head->prev)
+		if (node == tmp->head->next || node == tmp->tail->prev)
 			if (check_top_bottom(node->line) == FAIL)
 				return (FAIL);
 		if (check_middle(node) == FAIL)
