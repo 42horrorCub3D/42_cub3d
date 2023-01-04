@@ -36,12 +36,14 @@ int		is_texture(char *line, int *result);
 int		is_background(char *line, int *result);
 int		check_flag_overlap(int *result, int index);
 int		check_flag(int *result, int length);
-void	set_bit_flag(int index, int *result);
+void	find_first_last(t_node **first, t_node **last);
 
 /* check_map3.c */
 int		check_2d_array(char **str, int count);
 int		check_map_content(char *line);
-void	set_next_line(int fd, char **out_line);
+int		check_player_pos(t_node *node, int index);
+int		check_player_exist(char ch);
+int		check_player_num(t_tmp *tmp);
 
 /* error.c */
 void	exit_with_error(const char *msg);
@@ -84,6 +86,8 @@ void	draw_texture(t_game *game, t_ray *ray, t_wall *wall, int x);
 
 /* set_utils.c */
 void	set_textures_util(t_game *game, char **tmp, int dir);
+void	set_next_line(int fd, char **out_line);
+void	set_bit_flag(int index, int *result);
 
 /* set.c */
 void	set_map(t_game *game, t_tmp *tmp);

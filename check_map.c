@@ -41,30 +41,22 @@ int	check_middle(t_node *node)
 	while (index < ft_strlen(node->line))
 	{
 		if ((int)index >= node->prev->col)
-			if (node->line[index] == '0')
+			if (node->line[index] == '0' || \
+			check_player_exist(node->line[index]))
 				return (FAIL);
 		if (node->line[index] == '0' && node->prev->line[index] == ' ')
 			return (FAIL);
 		else if (node->line[index] == ' ')
+		{
 			if (node->prev->line[index] == '0' || \
 			node->line[index - 1] == '0' || node->line[index + 1] == '0')
 				return (FAIL);
+		}
+		else if (check_player_pos(node, index) == FAIL)
+			return (FAIL);
 		index++;
 	}
 	return (SUCCESS);
-}
-
-void	find_first_last(t_node **first, t_node **last)
-{
-	t_node	*f;
-	t_node	*l;
-
-	f = *first;
-	l = *last;
-	while (f->line[0] == '\0')
-		f = f->next;
-	while (l->line[0] == '\0')
-		l = l->prev;
 }
 
 int	check_map(t_tmp *tmp)

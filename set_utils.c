@@ -22,3 +22,31 @@ void	set_textures_util(t_game *game, char **tmp, int dir)
 	if (!game->image[dir].img_ptr)
 		exit_with_error("Error\nXpm File Does Not Exist\n");
 }
+
+void	set_next_line(int fd, char **out_line)
+{
+	free(*out_line);
+	*out_line = get_next_line(fd);
+}
+
+void	set_bit_flag(int index, int *result)
+{
+	int	i;
+	int	bit_pos;
+
+	if (index == 0)
+	{
+		*result |= 1;
+	}
+	else
+	{
+		i = 0;
+		bit_pos = 1;
+		while (i < index)
+		{
+			bit_pos *= 2;
+			i++;
+		}
+		*result |= bit_pos;
+	}
+}
