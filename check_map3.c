@@ -78,9 +78,3 @@ int	check_map_content2(char *line, t_tmp *tmp)
 	}
 	return (SUCCESS);
 }
-
-void	set_next_line(int fd, char **out_line)
-{
-	free(*out_line);
-	*out_line = get_next_line(fd);
-}

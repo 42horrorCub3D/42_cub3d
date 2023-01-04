@@ -95,24 +95,15 @@ int	check_flag(int *result, int length)
 	return (SUCCESS);
 }
 
-void	set_bit_flag(int index, int *result)
+void	find_first_last(t_node **first, t_node **last)
 {
-	int	i;
-	int	bit_pos;
+	t_node	*f;
+	t_node	*l;
 
-	if (index == 0)
-	{
-		*result |= 1;
-	}
-	else
-	{
-		i = 0;
-		bit_pos = 1;
-		while (i < index)
-		{
-			bit_pos *= 2;
-			i++;
-		}
-		*result |= bit_pos;
-	}
+	f = *first;
+	l = *last;
+	while (f->line[0] == '\0')
+		f = f->next;
+	while (l->line[0] == '\0')
+		l = l->prev;
 }
