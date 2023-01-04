@@ -41,7 +41,7 @@ void	find_first_last(t_node **first, t_node **last);
 /* check_map3.c */
 int		check_2d_array(char **str, int count);
 int		check_map_content(char *line, t_tmp *tmp);
-int     check_map_content2(char *line, t_tmp *tmp);
+int		check_map_content2(char *line, t_tmp *tmp);
 void	set_next_line(int fd, char **out_line);
 
 /* check_map4.c */
