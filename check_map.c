@@ -54,23 +54,41 @@ int	check_middle(t_node *node)
 	return (SUCCESS);
 }
 
+void	find_first_last(t_node **first, t_node **last)
+{
+	t_node	*f;
+	t_node	*l;
+
+	f = *first;
+	l = *last;
+	while (f->line[0] == '\0')
+		f = f->next;
+	while (l->line[0] == '\0')
+		l = l->prev;
+}
+
 int	check_map(t_tmp *tmp)
 {
 	t_node	*node;
+	t_node	*first;
+	t_node	*last;
 
-	node = tmp->head->next;
+	first = tmp->head->next;
+	last = tmp->tail->prev;
+	find_first_last(&first, &last);
+	node = first;
 	if (check_top_bottom(node->line) == FAIL)
 		return (FAIL);
 	if (node->line[0] == '\n' && check_nl(node, tmp) == FAIL)
 		return (FAIL);
-	while (node != tmp->tail)
+	while (node != last->next)
 	{
 		if (check_map_content(node->line) == FAIL)
 			return (FAIL);
-		if (node == tmp->head->next || node == tmp->tail->prev)
-			if (check_top_bottom(node->line) == FAIL)
-				return (FAIL);
-		if (check_middle(node) == FAIL)
+		if ((node == first || node == last) && \
+		check_top_bottom(node->line) == FAIL)
+			return (FAIL);
+		else if (check_middle(node) == FAIL)
 			return (FAIL);
 		node = node->next;
 	}

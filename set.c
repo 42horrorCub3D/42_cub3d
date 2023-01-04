@@ -22,7 +22,8 @@ void	set_map(t_game *game, t_tmp *tmp)
 	game->col = tmp->max_col;
 	while (node != tmp->tail)
 	{
-		game->map = ft_strjoin(game->map, node->line);
+		if (node->line[0] != '\0')
+			game->map = ft_strjoin(game->map, node->line);
 		node = node->next;
 	}
 }
