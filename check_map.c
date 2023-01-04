@@ -37,30 +37,18 @@ int	check_middle(t_node *node)
 
 	index = 1;
 	if (check_side(node->line) == FAIL)
-	{
-		printf("%d\n", 1);
 		return (FAIL);
-	}
 	while (index < ft_strlen(node->line))
 	{
 		if ((int)index >= node->prev->col)
 			if (node->line[index] == '0')
-			{
-				printf("%d\n", 2);
 				return (FAIL);
-			}
 		if (node->line[index] == '0' && node->prev->line[index] == ' ')
-		{
-			printf("%d\n", 3);
 			return (FAIL);
-		}
 		else if (node->line[index] == ' ')
 			if (node->prev->line[index] == '0' || \
 			node->line[index - 1] == '0' || node->line[index + 1] == '0')
-			{
-				printf("%d\n", 4);
 				return (FAIL);
-			}
 		index++;
 	}
 	return (SUCCESS);
@@ -72,33 +60,18 @@ int	check_map(t_tmp *tmp)
 
 	node = tmp->head->next;
 	if (check_top_bottom(node->line) == FAIL)
-	{
-		printf("%d\n", 1);
 		return (FAIL);
-	}
 	if (node->line[0] == '\n' && check_nl(node, tmp) == FAIL)
-	{
-		printf("%d\n", 2);
 		return (FAIL);
-	}
 	while (node != tmp->tail)
 	{
 		if (check_map_content(node->line) == FAIL)
-		{
-			printf("%d\n", 3);
 			return (FAIL);
-		}
 		if (node == tmp->head->next || node == tmp->head->prev)
 			if (check_top_bottom(node->line) == FAIL)
-			{
-				printf("%d\n", 4);
 				return (FAIL);
-			}
 		if (check_middle(node) == FAIL)
-		{
-			printf("%d\n", 5);
 			return (FAIL);
-		}
 		node = node->next;
 	}
 	return (SUCCESS);

@@ -105,11 +105,7 @@ void	init_game(t_game *game, int fd)
 	get_map(tmp, game, fd);
 	get_max_col(tmp);
 	if (check_map(tmp) == FAIL)
-	{	
-		printf("%d\n", tmp->max_col);
-		printf("%s\n", tmp->tail->prev->line);
 		exit_with_error("Error\nMap check failed\n");
-	}
 	fill_map(tmp);
 	init_vec(tmp, game->vec);
 	set_map(game, tmp);
