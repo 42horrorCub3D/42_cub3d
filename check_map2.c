@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map2.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/04 14:55:47 by minslee           #+#    #+#             */
+/*   Updated: 2023/01/04 14:56:38 by minslee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header/cub3d.h"
 
 int	is_texture(char *line, int *result)
@@ -103,40 +115,4 @@ void	set_bit_flag(int index, int *result)
 		}
 		*result |= bit_pos;
 	}
-}
-
-void	set_next_line(int fd, char **out_line)
-{
-	free(*out_line);
-	*out_line = get_next_line(fd);
-}
-
-int	check_map_content(char *line)
-{
-	size_t	index;
-	char	*content;
-	int		j;
-	int		length;
-	int		is_content;
-
-	index = -1;
-	content = " 10NSWE";
-	is_content = FAIL;
-	length = 7;
-	while (line[++index] != '\0')
-	{
-		j = -1;
-		while (++j < length)
-		{
-			if (line[index] == content[j])
-			{
-				is_content = SUCCESS;
-				break ;
-			}
-		}
-		if (is_content == FAIL)
-			return (FAIL);
-		is_content = FAIL;
-	}
-	return (SUCCESS);
 }

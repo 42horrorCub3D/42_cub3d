@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map3.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: minslee <minslee@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/01/04 14:56:41 by minslee           #+#    #+#             */
+/*   Updated: 2023/01/04 14:56:56 by minslee          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "header/cub3d.h"
+
+int	check_2d_array(char **str, int count)
+{
+	int	index;
+
+	index = 0;
+	while (str[index] != NULL)
+		index++;
+	if (index != count)
+		return (FAIL);
+	return (SUCCESS);
+}
+
+int	check_map_content(char *line)
+{
+	size_t	index;
+	char	*content;
+	int		j;
+	int		is_content;
+
+	index = -1;
+	content = " 10NSWE";
+	is_content = FAIL;
+	while (line[++index] != '\0')
+	{
+		j = -1;
+		while (++j < 7)
+		{
+			if (line[index] == content[j])
+			{
+				is_content = SUCCESS;
+				break ;
+			}
+		}
+		if (is_content == FAIL)
+			return (FAIL);
+		is_content = FAIL;
+	}
+	return (SUCCESS);
+}
+
+void	set_next_line(int fd, char **out_line)
+{
+	free(*out_line);
+	*out_line = get_next_line(fd);
+}

@@ -20,9 +20,6 @@
 # include "struct.h"
 # include "get_next_line.h"
 
-
-# include <stdio.h>
-
 /* check_imgae.c */
 int		check_is_all_digit(char *str);
 int		check_color(char **str);
@@ -33,16 +30,16 @@ int		check_side(char *line);
 int		check_middle(t_node *node);
 int		check_map(t_tmp *tmp);
 int		check_2d_array(char **str, int count);
-int check_nl(t_node *node, t_tmp *tmp);
+int		check_nl(t_node *node, t_tmp *tmp);
 
 /* check_map2.c*/
-int     is_texture(char *line, int *result);
-int     check_flag_overlap(int *result, int index);
-int     check_flag(int *result, int length);
-void    set_bit_flag(int index ,int *result);
-int     is_background(char *line, int *result);
-void    set_next_line(int fd, char **out_line);
-int     check_map_content(char *line);
+int		is_texture(char *line, int *result);
+int		check_flag_overlap(int *result, int index);
+int		check_flag(int *result, int length);
+void	set_bit_flag(int index, int *result);
+int		is_background(char *line, int *result);
+void	set_next_line(int fd, char **out_line);
+int		check_map_content(char *line);
 
 /* error.c */
 void	exit_with_error(const char *msg);
@@ -89,7 +86,7 @@ void	set_vec(t_vec *vec, char dir);
 
 /* ft_free.c */
 void	free_tmp(t_tmp *tmp);
-int     get_length_spilited(char **arr);
+int		get_length_spilited(char **arr);
 void	check_mlx_ptr_load(void **mlx_ptrs);
 
 #endif
