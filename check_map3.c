@@ -24,7 +24,7 @@ int	check_2d_array(char **str, int count)
 	return (SUCCESS);
 }
 
-int	check_map_content(char *line)
+int	check_map_content(char *line, t_tmp *tmp)
 {
 	size_t	index;
 	char	*content;
@@ -33,21 +33,48 @@ int	check_map_content(char *line)
 
 	index = -1;
 	content = " 10NSWE";
-	is_content = FAIL;
 	while (line[++index] != '\0')
 	{
 		j = -1;
+		is_content = FAIL;
+		while (++j < 7)
+		{
+			if (line[index] == content[j])
+			{
+				if (content[j] == 'N' || content[j] == 'S' \
+				|| content[j] == 'W' || content[j] == 'E')
+					++tmp->user_count;
+				is_content = SUCCESS;
+			}
+		}
+		if (is_content == FAIL || tmp->user_count > 1)
+			return (FAIL);
+	}
+	return (SUCCESS);
+}
+
+int	check_map_content2(char *line, t_tmp *tmp)
+{
+	size_t	index;
+	char	*content;
+	int		j;
+	int		is_content;
+
+	index = -1;
+	content = " 10NSWE";
+	while (line[++index] != '\0')
+	{
+		j = -1;
+		is_content = FAIL;
 		while (++j < 7)
 		{
 			if (line[index] == content[j])
 			{
 				is_content = SUCCESS;
-				break ;
 			}
 		}
-		if (is_content == FAIL)
+		if (is_content == FAIL || tmp->user_count != 1)
 			return (FAIL);
-		is_content = FAIL;
 	}
 	return (SUCCESS);
 }

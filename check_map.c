@@ -83,7 +83,7 @@ int	check_map(t_tmp *tmp)
 		return (FAIL);
 	while (node != last->next)
 	{
-		if (check_map_content(node->line) == FAIL)
+		if (check_map_content2(node->line, tmp) == FAIL)
 			return (FAIL);
 		if ((node == first || node == last) && \
 		check_top_bottom(node->line) == FAIL)

@@ -61,6 +61,7 @@ typedef struct s_tmp
 	int		max_col;
 	int		row;
 	int		flag;
+	int		user_count;
 	int		is_component;
 }	t_tmp;
 

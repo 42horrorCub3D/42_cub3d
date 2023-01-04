@@ -65,7 +65,7 @@ void	get_map(t_tmp *tmp, t_game *game, int fd)
 		else if (is_background(tmp_line, &tmp->flag) == SUCCESS)
 			set_floor_ceiling(game, tmp_line);
 		else if (check_flag(&tmp->flag, COMPONENT_SIZE) == SUCCESS \
-		&& check_map_content(tmp_line) == SUCCESS)
+		&& check_map_content(tmp_line, tmp) == SUCCESS)
 			set_tmp(tmp, tmp_line, &row);
 		else if (ft_strlen(tmp_line) != 0 || tmp_line[0] != '\0')
 			exit_with_error("Error\nWrong Map Component! 1\n");

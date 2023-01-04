@@ -90,6 +90,7 @@ void	init_tmp(t_tmp *tmp)
 	tmp->tail->prev = tmp->head;
 	tmp->is_component = FAIL;
 	tmp->flag = 0;
+	tmp->user_count = 0;
 }
 
 void	init_game(t_game *game, int fd)

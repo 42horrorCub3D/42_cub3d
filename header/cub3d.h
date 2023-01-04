@@ -40,7 +40,8 @@ void	set_bit_flag(int index, int *result);
 
 /* check_map3.c */
 int		check_2d_array(char **str, int count);
-int		check_map_content(char *line);
+int		check_map_content(char *line, t_tmp *tmp);
+int     check_map_content2(char *line, t_tmp *tmp);
 void	set_next_line(int fd, char **out_line);
 
 /* error.c */
