@@ -112,4 +112,3 @@ void	init_game(t_game *game, int fd)
 	free_tmp(tmp);
 	close(fd);
 }
-

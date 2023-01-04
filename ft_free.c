@@ -42,7 +42,6 @@ int	get_length_spilited(char **arr)
 		temp++;
 		length++;
 	}
-
 	return (length);
 }
 

@@ -77,7 +77,7 @@ int	check_map(t_tmp *tmp)
 	return (SUCCESS);
 }
 
-int check_nl(t_node *node, t_tmp *tmp)
+int	check_nl(t_node *node, t_tmp *tmp)
 {
 	while (node != tmp->tail)
 	{
@@ -87,6 +87,7 @@ int check_nl(t_node *node, t_tmp *tmp)
 	}
 	return (SUCCESS);
 }
+
 int	check_2d_array(char **str, int count)
 {
 	int	index;

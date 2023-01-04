@@ -11,12 +11,12 @@
 /* ************************************************************************** */
 
 #include "header/cub3d.h"
-#include <stdio.h>
-#include <string.h>
+
 void	set_tmp(t_tmp *tmp, char *tmp_line, int *row)
 {
 	ft_lstadd_back(tmp, tmp_line, ft_strlen(tmp_line));
 	tmp->row = ++(*row);
+	tmp->is_component = SUCCESS;
 }
 
 void	fill_map(t_tmp *tmp)
@@ -64,15 +64,11 @@ void	get_map(t_tmp *tmp, t_game *game, int fd)
 			set_textures(game, tmp_line);
 		else if (is_background(tmp_line, &tmp->flag) == SUCCESS)
 			set_floor_ceiling(game, tmp_line);
-		else if (check_flag(&tmp->flag, COMPONENT_SIZE) == SUCCESS && check_map_content(tmp_line) == SUCCESS)
-		{
+		else if (check_flag(&tmp->flag, COMPONENT_SIZE) == SUCCESS \
+		&& check_map_content(tmp_line) == SUCCESS)
 			set_tmp(tmp, tmp_line, &row);
-			tmp->is_component = SUCCESS;
-		}
 		else if (ft_strlen(tmp_line) != 0 || tmp_line[0] != '\0')
-		{
 			exit_with_error("Error\nWrong Map Component! 1\n");
-		}
 		set_next_line(fd, &tmp_line);
 	}
 	free(tmp_line);
